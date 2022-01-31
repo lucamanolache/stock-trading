@@ -50,14 +50,7 @@ class LSTMIndicator(bt.ind.PeriodN):
         self.l.predict_line[0] = pred[0]
 
 
-
 class SmaCross(bt.Strategy):
-    # list of parameters which are configurable for the strategy
-    params = dict(
-        pfast=10,  # period for the fast moving average
-        pslow=50  # period for the slow moving average
-    )
-
     def __init__(self):
         self.connor = LSTMIndicator()
 
@@ -76,7 +69,6 @@ cerebro.addstrategy(SmaCross)
 data = bt.feeds.YahooFinanceCSVData(dataname="msft.csv")
 
 cerebro.adddata(data)
-cerebro.addsizer(bt.sizers.AllInSizer)
 cerebro.broker.setcash(100000)
 cerebro.run()
 cerebro.plot()
