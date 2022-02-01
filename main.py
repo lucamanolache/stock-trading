@@ -46,7 +46,8 @@ class LSTMIndicator(bt.ind.PeriodN):
         d = np.reshape(self.scaler.fit_transform(d), (1, 20, 1))
 
         self.model_input = np.append(self.model_input, d, axis=0)
-        pred = self.model(torch.from_numpy(self.model_input).type(torch.Tensor))[-1]
+        pred = self.model(torch.from_numpy(
+            self.model_input).type(torch.Tensor))[-1]
         self.l.predict_line[0] = pred[0]
 
 
